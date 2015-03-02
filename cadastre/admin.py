@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from cadastre.models import License
+
+admin.site.site_header = 'EI Data Warehouse'
+admin.site.register(License)
