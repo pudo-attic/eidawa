@@ -5,7 +5,7 @@ from django.db.models import get_models, Model
 from django.contrib.contenttypes.generic import GenericForeignKey
 
 
-@transaction.commit_on_success
+@transaction.atomic
 def merge_model_objects(primary_object, alias_objects=[], keep_old=False):
     """
     Use this function to merge model objects (i.e. Users, Organizations, Polls,

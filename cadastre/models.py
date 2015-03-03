@@ -17,12 +17,24 @@ class CadastreModel(TimeStampedModel):
         abstract = True
 
 
+class Commodity(CadastreModel):
+    label = models.CharField(max_length=500)
+
+    def __unicode__(self):
+        return self.label
+
+
 class License(CadastreModel):
     title = models.CharField(max_length=500)
+    type = models.CharField(max_length=500, null=True, blank=True)
+    status = models.CharField(max_length=500, null=True, blank=True)
+    area = models.DecimalField(verbose_name='Area (ha)', decimal_places=3,
+                               max_digits=10, null=True, blank=True)
     country = CountryField(null=True)
     date_applied = models.DateField('date applied', null=True, blank=True)
     date_granted = models.DateField('date granted', null=True, blank=True)
     date_expires = models.DateField('date expires', null=True, blank=True)
+    commodities = models.ManyToManyField(Commodity, blank=True)
 
     def __unicode__(self):
         return self.title
@@ -60,7 +72,8 @@ class CompanyPlaceholder(CadastreModel):
 
 class LicenseHolder(CadastreModel):
     license = models.ForeignKey(License, related_name='holders')
-    interest = models.IntegerField(default=100, validators=percentage)
+    interest = models.IntegerField(verbose_name='Interest (%)',
+                                   default=100, validators=percentage)
     company_placeholder = models.ForeignKey(CompanyPlaceholder)
 
     def __unicode__(self):

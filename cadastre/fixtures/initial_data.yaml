@@ -1,0 +1,44 @@
+- model: cadastre.Commodity
+  pk: 1
+  fields:
+    label: Petroleum
+- model: cadastre.Commodity
+  pk: 2
+  fields:
+    label: Gas
+- model: cadastre.Commodity
+  pk: 3
+  fields:
+    label: Diamonds
+- model: cadastre.Commodity
+  pk: 4
+  fields:
+    label: Gold
+- model: cadastre.Commodity
+  pk: 5
+  fields:
+    label: Coal
+- model: cadastre.Commodity
+  pk: 6
+  fields:
+    label: Metals
+- model: cadastre.Commodity
+  pk: 7
+  fields:
+    label: Precious Stones
+- model: cadastre.Commodity
+  pk: 8
+  fields:
+    label: Coalbed Methane
+- model: cadastre.Commodity
+  pk: 9
+  fields:
+    label: Bases
+- model: cadastre.Commodity
+  pk: 10
+  fields:
+    label: Copper
+- model: cadastre.Commodity
+  pk: 11
+  fields:
+    label: Bauxite/Aluminum

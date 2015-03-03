@@ -3,6 +3,7 @@ from django.contrib import admin
 from cadastre.models import License, LicenseHolder
 from cadastre.models import Company, CompanyPlaceholder
 from cadastre.merge import merge_model_objects
+from cadastre.admin_filters import CountryFilter
 
 
 class CadastreAdmin(admin.ModelAdmin):
@@ -27,14 +28,18 @@ class LicenseHolderInlineAdmin(admin.TabularInline):
 
 
 class LicenseAdmin(CadastreAdmin):
-    list_display = ('title', 'country', 'date_granted', 'date_expires')
-    list_filter = ('country', )
+    list_display = ('title', 'country', 'area', 'date_expires')
+    search_fields = ('title', )
+    list_filter = (CountryFilter, 'commodities', )
     inlines = (LicenseHolderInlineAdmin, )
 
     fieldsets = ((
         'Base data', {
             'fields': ('title', 'country', 'date_applied', 'date_granted',
                        'date_expires')
+        }), (
+        'Geography and Minerals', {
+            'fields': ('area', 'commodities', )
         }), (
         'Provenance', {
             'fields': ('source_url', 'modified', 'modified_by', 'created',
@@ -92,6 +97,7 @@ class CompanyPlaceholderInlineAdmin(admin.TabularInline):
 class CompanyAdmin(CadastreAdmin):
     list_display = ('label', 'jurisdiction')
     actions = ('merge', )
+    search_fields = ('label', )
     inlines = (CompanyPlaceholderInlineAdmin, )
 
     fieldsets = ((
@@ -124,7 +130,7 @@ class CompanyAdmin(CadastreAdmin):
             ph.save()
 
 
-admin.site.site_header = 'EI Data Warehouse'
+admin.site.site_header = 'Extractive Industries Data Warehouse'
 # admin.site.index_title = 'Drilling down until we hit money'
 admin.site.register(License, LicenseAdmin)
 # admin.site.register(LicenseHolder, LicenseHolderAdmin)
