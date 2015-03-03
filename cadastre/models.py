@@ -48,17 +48,18 @@ class Company(CadastreModel):
 class CompanyPlaceholder(CadastreModel):
     label = models.CharField(max_length=500, unique=True)
     jurisdiction = CountryField(null=True)
-    company = models.ForeignKey(Company, null=True)
+    company = models.ForeignKey(Company, null=True,
+                                related_name='placeholders')
 
     def __unicode__(self):
         return self.label
 
     class Meta:
-        unique_together = (('label', 'jurisdiction'),)
+        unique_together = (('label', 'jurisdiction'), )
 
 
 class LicenseHolder(CadastreModel):
-    license = models.ForeignKey(License)
+    license = models.ForeignKey(License, related_name='holders')
     interest = models.IntegerField(default=100, validators=percentage)
     company_placeholder = models.ForeignKey(CompanyPlaceholder)
 
