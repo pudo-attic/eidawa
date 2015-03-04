@@ -11,6 +11,7 @@ DEST_PATH = os.path.join(os.path.dirname(__file__), 'csv')
 
 IGNORE_LAYERS = ['Farms', 'Region', 'Districts',
                  'Withdrawn Areas', 'Divisions',
+                 'Environmentally Sensitive Areas',
                  u'Áreas de Conservação - Buffer',
                  u'Áreas de Conservação',
                  u'Áreas Reservadas']
