@@ -8,6 +8,8 @@ percentage = [MaxValueValidator(100), MinValueValidator(0)]
 
 
 class CadastreModel(TimeStampedModel):
+    source_label = models.CharField(verbose_name='Source', max_length=4096,
+                                    null=True, blank=True)
     source_url = models.URLField(verbose_name='Source URL', max_length=4096,
                                  null=True, blank=True)
     created_by = models.ForeignKey(User, null=True, related_name='+')
@@ -25,19 +27,21 @@ class Commodity(CadastreModel):
 
 
 class License(CadastreModel):
-    title = models.CharField(max_length=500)
+    identifier = models.CharField(max_length=500)
     type = models.CharField(max_length=500, null=True, blank=True)
     status = models.CharField(max_length=500, null=True, blank=True)
-    area = models.DecimalField(verbose_name='Area (ha)', decimal_places=3,
-                               max_digits=10, null=True, blank=True)
+    area = models.DecimalField(verbose_name='Area (ha)', decimal_places=1,
+                               max_digits=30, null=True, blank=True)
     country = CountryField(null=True)
     date_applied = models.DateField('date applied', null=True, blank=True)
     date_granted = models.DateField('date granted', null=True, blank=True)
     date_expires = models.DateField('date expires', null=True, blank=True)
+    date_pegged = models.DateField('date pegged', null=True, blank=True)
+    date_renewal = models.DateField('date renewal', null=True, blank=True)
     commodities = models.ManyToManyField(Commodity, blank=True)
 
     def __unicode__(self):
-        return self.title
+        return self.identifier
 
 
 class Company(CadastreModel):

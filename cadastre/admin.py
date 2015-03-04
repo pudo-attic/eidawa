@@ -28,22 +28,22 @@ class LicenseHolderInlineAdmin(admin.TabularInline):
 
 
 class LicenseAdmin(CadastreAdmin):
-    list_display = ('title', 'country', 'area', 'date_expires')
-    search_fields = ('title', )
+    list_display = ('identifier', 'country', 'area', 'date_expires')
+    search_fields = ('identifier', )
     list_filter = (CountryFilter, 'commodities', )
     inlines = (LicenseHolderInlineAdmin, )
 
     fieldsets = ((
         'Base data', {
-            'fields': ('title', 'country', 'date_applied', 'date_granted',
+            'fields': ('identifier', 'country', 'date_applied', 'date_granted',
                        'date_expires')
         }), (
         'Geography and Minerals', {
             'fields': ('area', 'commodities', )
         }), (
         'Provenance', {
-            'fields': ('source_url', 'modified', 'modified_by', 'created',
-                       'created_by'),
+            'fields': ('source_label', 'source_url', 'modified', 'modified_by',
+                       'created', 'created_by'),
             'classes': ('collapse',)
         })
     )
@@ -66,8 +66,8 @@ class LicenseHolderAdmin(CadastreAdmin):
             'fields': ('company_placeholder', 'license', 'interest', )
         }), (
         'Provenance', {
-            'fields': ('source_url', 'modified', 'modified_by', 'created',
-                       'created_by'),
+            'fields': ('source_label', 'source_url', 'modified', 'modified_by',
+                       'created', 'created_by'),
             'classes': ('collapse',)
         })
     )
@@ -81,8 +81,8 @@ class CompanyPlaceholderAdmin(CadastreAdmin):
             'fields': ('label', 'jurisdiction', 'company', )
         }), (
         'Provenance', {
-            'fields': ('source_url', 'modified', 'modified_by', 'created',
-                       'created_by'),
+            'fields': ('source_label', 'source_url', 'modified', 'modified_by',
+                       'created', 'created_by'),
             'classes': ('collapse',)
         })
     )
@@ -105,8 +105,8 @@ class CompanyAdmin(CadastreAdmin):
             'fields': ('label', 'jurisdiction', 'opencorporates_uri', )
         }), (
         'Provenance', {
-            'fields': ('source_url', 'modified', 'modified_by', 'created',
-                       'created_by'),
+            'fields': ('source_label', 'source_url', 'modified', 'modified_by',
+                       'created', 'created_by'),
             'classes': ('collapse',)
         })
     )

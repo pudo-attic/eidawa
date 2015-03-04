@@ -49,6 +49,7 @@ def parse_file(path):
         lctx = ctx.copy()
         lctx['layer_name'] = layer['name']
         lctx['layer_id'] = layer['id']
+        del lctx['rest_url']
 
         features = layer['data']['features']
         print ctx['source_url'], layer['name'], layer['id'], len(features)
