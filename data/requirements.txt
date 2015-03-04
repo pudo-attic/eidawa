@@ -1,0 +1,6 @@
+# ETL has extra dependencies
+
+requests
+googlesheets
+dataset
+lxml
