@@ -3,6 +3,7 @@ import os
 import json
 import glob
 import dataset
+from normality import slugify
 from datetime import datetime
 from pprint import pprint
 
@@ -12,6 +13,7 @@ DEST_PATH = os.path.join(os.path.dirname(__file__), 'csv')
 IGNORE_LAYERS = ['Farms', 'Region', 'Districts',
                  'Withdrawn Areas', 'Divisions',
                  'Environmentally Sensitive Areas',
+                 'Claims',
                  u'Áreas de Conservação - Buffer',
                  u'Áreas de Conservação',
                  u'Áreas Reservadas']
@@ -60,6 +62,7 @@ def parse_file(path):
             tbl.insert(attrs)
 
         fn = '%(source_name)s-%(layer_id)s %(layer_name)s.csv' % lctx
+        fn = slugify(fn)
         dataset.freeze(tbl, filename=fn, format='csv', prefix=DEST_PATH)
 
 

@@ -133,6 +133,6 @@ class CompanyAdmin(CadastreAdmin):
 admin.site.site_header = 'Extractive Industries Data Warehouse'
 # admin.site.index_title = 'Drilling down until we hit money'
 admin.site.register(License, LicenseAdmin)
-# admin.site.register(LicenseHolder, LicenseHolderAdmin)
+admin.site.register(LicenseHolder, LicenseHolderAdmin)
 admin.site.register(Company, CompanyAdmin)
-# admin.site.register(CompanyPlaceholder, CompanyPlaceholderAdmin)
+admin.site.register(CompanyPlaceholder, CompanyPlaceholderAdmin)
