@@ -81,5 +81,8 @@ class LicenseHolder(CadastreModel):
     company_placeholder = models.ForeignKey(CompanyPlaceholder)
 
     def __unicode__(self):
-        return '%s -> %s (%s%%)' % (self.company_placeholder, self.license,
-                                    self.interest)
+        try:
+            return '%s -> %s (%s%%)' % (self.company_placeholder, self.license,
+                                        self.interest)
+        except:
+            return '(bad data)'
